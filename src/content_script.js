@@ -7,27 +7,30 @@ var targets = [
 ];
 
 function log(message) {
-	//console.log(message);
+	console.log(message);
 }
 
-targets.forEach(function(url) {
-	var reglex = new RegExp(url);
-	if (! reglex.test(location.href)) {
-		return;
+var targetUrl;
+
+var isTarget = targets.some(function(url) {
+	if (new RegExp(url).test(location.href)) {
+		targetUrl = url;
+		return true;
+	} else {
+		return false;
 	}
-
-	log("target lock start");
-
-	// 自動的にタブをロックする
-	chrome.extension.sendMessage({request: 'lock-tab'}, function (response) {
-		log("pinned finished");
-	});
-
-	// 閉じる時にアラートを表示させる
-	window.addEventListener("beforeunload", function() {
-		return 'CLOSING OK?';
-	});
-
-	log("target lock end");
 });
 
+if (isTarget) {
+	// 自動的にタブをロックする
+	chrome.extension.sendMessage({request: 'lock-tab', url: targetUrl}, function (response) {
+		if (!response.pinned) {
+			log("no pinned...");
+			return;
+		}
+		// 閉じる時にアラートを表示させる
+		window.addEventListener("beforeunload", function() {
+			return 'CLOSING OK?';
+		});
+	});
+}
