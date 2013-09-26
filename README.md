@@ -1,14 +1,15 @@
 lock-tab
 ========
-automatic locking tabs for chrome extension
 
 特定のURLを開いた時に、自動的にタブをロックするChrome拡張です。
+
 
  Feature
 ---------
 
 * 該当のタブを"固定"します。タブが左端に寄って表示が小さくなります
 * ロックしたタブを閉じようとしたり、別のページに遷移しようとした時にアラートを表示します
+
 
  Target
 ---------
@@ -20,15 +21,18 @@ automatic locking tabs for chrome extension
 * tweetdeck [https://web.tweetdeck.com/](https://web.tweetdeck.com/)
 * doit.im [https://i.doit.im/home](https://i.doit.im/home)
 
+
  Screenshot
 ------------
 
-![lock-tab-screenshot](lock-tab-screenshot.png)
+![screenshotlock-tab-screenshot](lock-tab-screenshot.png)
+
 
  TODO
 ---------
 
 //TODO: targetはオプションから変更できるようにしたいけど、まだ実装してません(*ﾉω・*)ﾃﾍ
+
 
  Special Thanks
 ----------------
