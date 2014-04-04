@@ -9,6 +9,8 @@
 5. 新規追加しようとして削除
 6. stay状態のものをeditにして削除
 */
+var port = process.env.TEST_PORT || 3333;
+var base = 'http://localhost:' + port;
 
 describe('初期状態は4つのサイトが登録済み', function() {
 	describe('(1/4) facebook https://www.facebook.com/](https://www.facebook.com/', function() {
