@@ -1,3 +1,39 @@
 body {
 	background-color: #eee;
+	font-size: 14px;
+}
+
+.option .icon {
+	width: 16px;
+	height: 16px;
+	border: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-size: 16px;
+
+	margin: 0;
+	padding: 0;
+	/* 文字消去 */
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+.option .icon.add {
+	background-image: url(../img/icon-add.png);
+}
+.option .icon.remove {
+	background-image: url(../img/icon-remove.png);
+}
+.option .icon.save {
+	background-image: url(../img/icon-save.png);
+}
+
+.option .list .url .input {
+	height: 1.5em;
+	width:50%;
+}
+.option .list .url .input:disabled {
+	background-color: transparent;
+	border-color: transparent;
 }
