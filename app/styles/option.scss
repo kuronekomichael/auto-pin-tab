@@ -1,0 +1,39 @@
+.option {
+    .icon {
+        width: 16px;
+        height: 16px;
+        border: 0;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 16px;
+
+        margin: 0;
+        padding: 0;
+        /* 文字消去 */
+        overflow: hidden;
+        text-indent: 100%;
+        white-space: nowrap;
+    }
+
+    .icon.add {
+        background-image: url(../images/icon-add.png);
+    }
+    .icon.remove {
+        background-image: url(../images/icon-remove.png);
+    }
+    .icon.save {
+        background-image: url(../images/icon-save.png);
+    }
+
+    .list .url {
+        .input {
+            height: 1.5em;
+            width:50%;
+        }
+        .input:disabled {
+            background-color: transparent;
+            border-color: transparent;
+        }
+    }
+}
+

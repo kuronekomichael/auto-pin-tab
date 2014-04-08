@@ -1,3 +1,5 @@
+'use strict';
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	console.assert(message.request === 'lock-tab');
 
@@ -10,12 +12,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	];
 
 	var isTarget = targets.some(function(url) {
-		if (new RegExp(url).test(message.url)) {
-			targetUrl = url;
-			return true;
-		} else {
-			return false;
-		}
+		return (new RegExp(url).test(message.url));
 	});
 
 	if (!isTarget) {
@@ -26,7 +23,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	chrome.tabs.query({}, function(tabs) {
 		var duplicates = 0;
 		tabs.forEach(function(tab) {
-			if (new RegExp(message.url).test(tab.url)) duplicates++;
+			if (new RegExp(message.url).test(tab.url)) {
+                duplicates++;
+            }
 		});
 
 		if (duplicates >= 2) {

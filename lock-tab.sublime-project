@@ -10,6 +10,7 @@
     ],
     // project unique settings
     "settings": {
+        "translate_tabs_to_spaces": true
     },
     // project unique build systems
     "build_systems": []
