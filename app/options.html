@@ -1,38 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>lock-tab options</title>
-<link rel="stylesheet" href="styles/vendor/normalize.css">
-<link rel="stylesheet" href="styles/common.css">
-<link rel="stylesheet" href="styles/option.css">
-<script src="scripts/vendor/jquery.min.js"></script>
-<script src="scripts/options.js"></script>
+    <meta charset="utf-8">
+    <title>lock-tab options</title>
+    <link rel="stylesheet" href="styles/vendor/normalize.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/option.css">
+    <script src="scripts/vendor/jquery.min.js"></script>
+    <script src="scripts/options.js"></script>
 </head>
 <body class="option">
-
-<h1>Lock Target URLs</h1>
-
-<ul class="list">
-	<li class="url">
-		<input type="text" class="input" value="http://aaaa/bb.jsp" />
-		<button class="icon save" title="save">save</button>
-		<button class="icon remove" title="remove">remove</button>
-	<li class="url">
-		<input type="text" class="input" disabled="disabled" value="http://aaaa/bb.jsp" />
-		<button class="icon remove" title="remove">remove</button>
-	<li class="url">
-		<input type="text" class="input" value="http://aaaa/bb.jsp" />
-		<button class="icon add" title="add">add</button>
-</ul>
-
-<pre>
-//TODO:
-add = 新しい行が一つ下に追加される。最下行にだけ表示する
-delete = 現在の行を削除する。既に存在する行にだけ表示する
-update = 現在の行を更新する。更新終了後は静的テキストに戻す。既に存在する∧input boxになっている行にだけ表示する。
-text = 静的テキストをinput boxに変化させる。既に存在する行にだけ対応する。
-</pre>
-
+    <h1 class="title">LOCK URLs</h1>
+    <ul class="url-list"></ul>
+    <span class="debug">updated</span>
 </body>
 </html>

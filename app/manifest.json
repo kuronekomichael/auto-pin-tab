@@ -1,7 +1,7 @@
 {
     "name": "lock-tab",
     "manifest_version": 2,
-    "version": "0.0.22",
+    "version": "0.0.31",
     "description": "自動的にタブをロックします",
     "background": {
         "scripts": [

@@ -10,10 +10,14 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 		'https://www.facebook.com/',
 		'https://web.tweetdeck.com/'
 	];
+    targets = localStorage.targetUrls.split(',');
+    console.log('target urls:', targets);
 
 	var isTarget = targets.some(function(url) {
 		return (new RegExp(url).test(message.url));
 	});
+
+    console.log('isTarget', isTarget);
 
 	if (!isTarget) {
 		sendResponse({pinned: false});

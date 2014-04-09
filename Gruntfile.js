@@ -26,17 +26,30 @@ module.exports = function (grunt) {
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             js: {
-                files: ['<%= config.app %>/scripts/{,*/}*.js'],
+                files: ['<%= config.dist %>/scripts/{,*/}*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true
                 }
             },
+            source: {
+                files: [
+                    '<%= config.app %>/*.html',
+                    '<%= config.app %>/manifest.json',
+                    '<%= config.app %>/scripts/{,*/}*.js',
+                    '<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ],
+                tasks: ['newer:copy']
+            },
             gruntfile: {
                 files: ['Gruntfile.js']
             },
+            sass: {
+                files: ['<%= config.app %>/styles/{,*/}*.scss'],
+                tasks: ['compass']
+            },
             styles: {
-                files: ['<%= config.app %>/styles/{,*/}*.css'],
+                files: ['<%= config.dist %>/styles/{,*/}*.css'],
                 tasks: [],
                 options: {
                     livereload: true
@@ -47,10 +60,10 @@ module.exports = function (grunt) {
                     livereload: '<%= connect.options.livereload %>'
                 },
                 files: [
-                    '<%= config.app %>/*.html',
-                    '<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                    '<%= config.app %>/manifest.json',
-                    '<%= config.app %>/_locales/{,*/}*.json'
+                    '<%= config.dist %>/*.html',
+                    '<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    '<%= config.dist %>/manifest.json',
+                    '<%= config.dist %>/_locales/{,*/}*.json'
                 ]
             }
         },
@@ -67,7 +80,7 @@ module.exports = function (grunt) {
                 options: {
                     open: false,
                     base: [
-                        '<%= config.app %>'
+                        '<%= config.dist %>'
                     ]
                 }
             },
@@ -76,7 +89,7 @@ module.exports = function (grunt) {
                     open: false,
                     base: [
                         'test',
-                        '<%= config.app %>'
+                        '<%= config.dist %>'
                     ]
                 }
             }
@@ -220,7 +233,7 @@ module.exports = function (grunt) {
                     dest: '<%= config.dist %>',
                     src: [
                         '*.{ico,png,txt}',
-                        'images/{,*/}*.{webp,gif}',
+                        'images/{,*/}*.{webp,gif,png,jpg}',
                         '{,*/}*.html',
                         'scripts/{,*/}*.js',
                         'styles/{,*/}*.css',
@@ -284,7 +297,17 @@ module.exports = function (grunt) {
                     dest: ''
                 }]
             }
+        },
+
+        // integration test on webdriver
+        integration: {
+            // http://localhost:3333/dist/options.html
+            options: {
+                program: 'node ./test-server/app.js'
+            },
+            src: ['test/integration/**/*.js']
         }
+
     });
 
     grunt.registerTask('debug', function () {
@@ -307,6 +330,7 @@ module.exports = function (grunt) {
         //'useminPrepare',
         //'concurrent:dist',
         //'cssmin',
+        'compass',
         'concat',
         'uglify',
         'copy',
