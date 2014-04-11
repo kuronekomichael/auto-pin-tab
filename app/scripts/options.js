@@ -21,17 +21,6 @@ $(function(){
         $li.append($('<button>').attr('title', 'add').addClass('icon add'));
     }
 
-    function initStorage() {
-        if (localStorage.targetUrls === undefined) {
-            localStorage.targetUrls = [
-                'https://www.facebook.com/',
-                'https://mail.google.com/mail',
-                'https://web.tweetdeck.com/',
-                'https://i.doit.im/home'
-            ];
-        }
-    }
-
     function updateStorage() {
         var storage = [];
         $('.url-list__target-url').each(function(index, node) {
@@ -96,7 +85,7 @@ $(function(){
 
     // loaded
     (function() {
-        initStorage();
+        chrome.extension.getBackgroundPage().initStorage();
 
         localStorage.targetUrls.split(',').forEach(function(url) {
             insertLine(url);

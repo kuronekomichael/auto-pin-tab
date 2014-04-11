@@ -1,23 +1,27 @@
 'use strict';
 
+function initStorage() {
+    if (localStorage.targetUrls === undefined) {
+        localStorage.targetUrls = [
+            'https://www.facebook.com/',
+            'https://mail.google.com/mail',
+            'https://web.tweetdeck.com/',
+            'https://i.doit.im/home'
+        ];
+    }
+}
+
+initStorage();
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	console.assert(message.request === 'lock-tab');
 
 	// ロック対象のURL(本当はoptionsから設定したものにしたい)
-	var targets = [
-		'https://i.doit.im/home',
-		'https://mail.google.com/mail',
-		'https://www.facebook.com/',
-		'https://web.tweetdeck.com/'
-	];
-    targets = localStorage.targetUrls.split(',');
-    console.log('target urls:', targets);
+	var targets = localStorage.targetUrls.split(',');
 
 	var isTarget = targets.some(function(url) {
 		return (new RegExp(url).test(message.url));
 	});
-
-    console.log('isTarget', isTarget);
 
 	if (!isTarget) {
 		sendResponse({pinned: false});
