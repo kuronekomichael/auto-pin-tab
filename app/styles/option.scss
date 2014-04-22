@@ -1,0 +1,58 @@
+.option {
+    background-color: #fefefe;
+    color: #333;
+
+    .title {
+        margin-left: .5em;
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        border: 0;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 16px;
+
+        margin: 0 2px;
+        padding: 0;
+        /* 文字消去 */
+        overflow: hidden;
+        text-indent: 100%;
+        white-space: nowrap;
+    }
+
+    .url-list li {
+        list-style: none;
+        margin: 5px 0;
+    }
+
+    .icon.add {
+        background-image: url(../images/icon-add.png);
+    }
+    .icon.remove {
+        background-image: url(../images/icon-remove.png);
+    }
+    .icon.save {
+        background-image: url(../images/icon-save.png);
+    }
+
+    .url-list__target-url {
+        height: 1.5em;
+        width: 50%;
+        min-width: 500px;
+    }
+    .url-list__target-url[readonly="readonly"] {
+        background-color: #f2f2f2;
+        border-color: transparent;
+    }
+    
+    .debug {
+        background-color: #9deded;
+        text-align: center;
+        display: none;
+        padding: 5px 50px;
+        letter-spacing: 5px;
+    }
+}
+
