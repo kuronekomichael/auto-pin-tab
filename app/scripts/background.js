@@ -16,7 +16,6 @@ initStorage();
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	console.assert(message.request === 'lock-tab');
 
-	// ロック対象のURL(本当はoptionsから設定したものにしたい)
 	var targets = localStorage.targetUrls.split(',');
 
 	var isTarget = targets.some(function(url) {
