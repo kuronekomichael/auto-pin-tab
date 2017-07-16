@@ -31,7 +31,7 @@ $(function(){
         var oldValue = localStorage.targetUrls;
         localStorage.targetUrls = storage;
         var newValue = localStorage.targetUrls;
-        
+
         if (oldValue !== newValue) {
             $('.debug').show();
             setTimeout(function() {
@@ -74,7 +74,7 @@ $(function(){
         if (!$(this).attr('readonly')) {
             return;
         }
-        
+
         // STAY -> EDIT
         $(this).removeAttr('readonly');
 
@@ -85,8 +85,6 @@ $(function(){
 
     // loaded
     (function() {
-        chrome.extension.getBackgroundPage().initStorage();
-
         localStorage.targetUrls.split(',').forEach(function(url) {
             insertLine(url);
         });

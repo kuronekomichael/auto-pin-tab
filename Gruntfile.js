@@ -332,7 +332,7 @@ module.exports = function (grunt) {
         //'cssmin',
         'compass',
         'concat',
-        'uglify',
+        //'uglify',
         'copy',
         //'usemin'
     ]);

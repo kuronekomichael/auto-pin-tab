@@ -1,6 +1,7 @@
 'use strict';
 
-function initStorage() {
+chrome.runtime.onInstalled.addListener(() => {
+    // 初回起動時（＝ローカルストレージに何もデータが入っていない）の初期設定
     if (localStorage.targetUrls === undefined) {
         localStorage.targetUrls = [
             'https://www.facebook.com/',
@@ -9,41 +10,38 @@ function initStorage() {
             'https://i.doit.im/home'
         ];
     }
-}
+});
 
-initStorage();
+// ロックすべきタブかどうかを判定して返答する
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.assert(message.request === 'lock-tab');
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-	console.assert(message.request === 'lock-tab');
+    const isTarget = localStorage.targetUrls.split(',').some((url) => {
+        return (new RegExp(url).test(message.url));
+    });
 
-	var targets = localStorage.targetUrls.split(',');
+    if (!isTarget) {
+        sendResponse({pinned: false});
+        return;
+    }
 
-	var isTarget = targets.some(function(url) {
-		return (new RegExp(url).test(message.url));
-	});
-
-	if (!isTarget) {
-		sendResponse({pinned: false});
-		return;
-	}
-
-	chrome.tabs.query({}, function(tabs) {
-		var duplicates = 0;
-		tabs.forEach(function(tab) {
-			if (new RegExp(message.url).test(tab.url)) {
+    chrome.tabs.query({}, (tabs) => {
+        let duplicates = 0;
+        tabs.forEach((tab) => {
+            if (new RegExp(message.url).test(tab.url)) {
                 duplicates++;
             }
-		});
+        });
 
-		if (duplicates >= 2) {
-			sendResponse({pinned: false});
-			return;
-		}
+        // 既にロックされているタブが１つ以上ある場合は、これ以上ロックしない
+        if (1 < duplicates) {
+            sendResponse({pinned: false});
+            return;
+        }
 
-		chrome.tabs.update(sender.tab.id, {pinned: true}, function(tab) {
-			sendResponse({pinned: tab.pinned});
-		});
-	});
-	return true;
-
+        chrome.tabs.update(sender.tab.id, {pinned: true}, (tab) => {
+            sendResponse({pinned: tab.pinned});
+        });
+    });
+    return true;
 });

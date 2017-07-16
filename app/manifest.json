@@ -1,12 +1,13 @@
 {
     "name": "lock-tab",
     "manifest_version": 2,
-    "version": "0.0.33",
+    "version": "0.0.38",
     "description": "自動的にタブをロックします",
     "background": {
         "scripts": [
             "scripts/background.js"
-        ]
+        ],
+        "persistent": false
     },
     "icons": {
         "16": "images/icon_16x16.png",
