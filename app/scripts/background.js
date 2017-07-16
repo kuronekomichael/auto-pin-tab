@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(() => {
     }
 });
 
-// ロックすべきタブかどうかを判定して返答する
+// content_scriptからの通知を受けて、ロックすべきタブであればpinned状態にする
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.assert(message.request === 'lock-tab');
 
