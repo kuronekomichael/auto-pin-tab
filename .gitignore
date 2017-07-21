@@ -16,3 +16,4 @@ npm-debug.log
 .sass-cache
 
 dist
+/dist.zip
