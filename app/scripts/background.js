@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // content_scriptからの通知を受けて、ロックすべきタブであればpinned状態にする
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.assert(message.request === 'lock-tab');
+    console.assert(message.request === 'auto-pin-tab');
 
     const isTarget = localStorage.targetUrls.split(',').some((url) => {
         return (new RegExp(url).test(message.url));

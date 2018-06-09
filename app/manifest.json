@@ -1,7 +1,7 @@
 {
-    "name": "lock-tab",
+    "name": "auto-pin-tab",
     "manifest_version": 2,
-    "version": "0.0.39",
+    "version": "0.0.41",
     "description": "自動的にタブをロックします",
     "background": {
         "scripts": [
