@@ -15,7 +15,7 @@
 * facebook [https://www.facebook.com/](https://www.facebook.com/)
 * gmail [https://mail.google.com/mail](https://mail.google.com/mail)
 * tweetdeck [https://web.tweetdeck.com/](https://web.tweetdeck.com/)
-* doit.im [https://i.doit.im/home](https://i.doit.im/home)
+* chatwork [https://www.chatwork.com/](https://www.chatwork.com/)
 
 他にもオプションから変更ができます。
 
@@ -29,9 +29,10 @@
 
 [![http://photo-chips.com/](http://photo-chips.com/images/pc_banner.gif)](http://photo-chips.com/)
 
-## Development
+## Develop
 
 ```bash
+gem install compass
 npm install
 grunt build
 ```

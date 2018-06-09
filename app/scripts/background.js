@@ -6,7 +6,8 @@ chrome.runtime.onInstalled.addListener(() => {
         localStorage.targetUrls = [
             'https://www.facebook.com/',
             'https://mail.google.com/mail',
-            'https://web.tweetdeck.com/'
+            'https://web.tweetdeck.com/',
+            'https://www.chatwork.com/'
         ];
     }
 });
